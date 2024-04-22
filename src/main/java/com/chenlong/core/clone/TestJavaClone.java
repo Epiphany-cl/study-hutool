@@ -5,21 +5,22 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * 测试 传统clone方法
+ * 测试 传统 clone 方法
  */
-public class TestOriginalClone {
+public class TestJavaClone {
     public static void main(String[] args) throws CloneNotSupportedException {
-        //
-        OriginalCat originalCat = new OriginalCat("招财", 1);
-        Object cloneCat = originalCat.clone();
-        System.out.println(originalCat);
-        System.out.println(cloneCat);
+        // Java 的克隆方法，返回的是 Object 需要强制转化才能得到被克隆的对象
+        Cat cat = new Cat("招财", 1);
+        Cat cloneCat = (Cat) cat.clone();
+        System.out.println("cat = " + cat);
+        System.out.println("cloneCat = " + cloneCat);
     }
 
+    // 继承 java.lang.Cloneable 接口的传统猫猫类🐱
     @Data
     @AllArgsConstructor
     @NoArgsConstructor
-    static class OriginalCat implements Cloneable{
+    static class Cat implements java.lang.Cloneable {
         private String name;
         private Integer age;
 
